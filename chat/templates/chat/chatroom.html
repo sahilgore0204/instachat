@@ -1,0 +1,51 @@
+<!-- if you see characters like {{something}} it is django template language
+it makes our work easier for designing dynamic web pages
+you can read more at https://docs.djangoproject.com/en/3.2/ref/templates/language/ -->
+
+<!-- This is a page for chating with other participants present in the meet
+It contains html,css,javascript,jquery for sending,receiving,displaying messages -->
+
+<!-- javascript,css is written in script tag for this file -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>Chat|{{meetname}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'chat/css/chatroom.css' %}">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 col-8" style="position: relative;">
+                        <h1 style="text-align: center;">Messages</h1>
+                        <div id="messages">
+                            <!-- the messages stored in database are renderd here -->
+                            {% for x in messages %}
+                            <div class="msg">{{x}}</div>
+                            <br>
+                            {% endfor %}
+                        </div>
+                </div>
+                <div class="col-sm-6 col-4" style="position: fixed; right: 0; margin-top: 10px; margin-right: 0px; padding: 10px;">
+                    <input id="input1" style="width: 30vw;" class="form-control" type="text" placeholder="Enter Message" name="message">
+                    <input style="margin-left: 2px; margin-bottom: 5px;" id="input2" class="btn btn-primary" type="submit" value="Send"><br>
+                    <button style="margin-left: 100px;" id="meet-btn" type="button" class="btn btn-secondary">Meet</button>
+                    <button style="margin-left: 5px;" id="index-btn" type="button" class="btn btn-info">Go back to main page</button>
+                </div>
+            </div>
+        </div>
+         <div class="d-none" id="owner">{{owner}}</div>
+         <div class="d-none" id="meet">{{meetname}}</div>
+         <div class="d-none" id="user">{{username}}</div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+         <script src="{% static 'chat/js/chatroom.js' %}">
+             
+         </script>
+    </body>
+</html>

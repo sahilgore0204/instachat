@@ -1,0 +1,21 @@
+body{
+    background-color: #fffdd0;
+}
+.form-control{
+    display: inline;
+}
+.inputblock {
+    margin-bottom: 5px;
+}
+#input1 {
+    text-align: center;
+}
+.msg {
+    display: inline-block;
+    margin-top: 3px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color:blueviolet;
+    color: white;
+    padding: 5px;
+}

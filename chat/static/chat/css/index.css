@@ -1,0 +1,13 @@
+input,button {
+    margin-bottom: 5px;
+    margin-right: 5px;;
+ }
+ #form-content-1,#form-content-2,#form-content-3 {
+     display: none;
+     position: relative;
+     top: 120px;
+ }
+ body {
+     margin: 10px;
+     background-color: #fffdd0;
+ }

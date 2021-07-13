@@ -1,0 +1,38 @@
+body{
+    background-color: #fffdd0;
+}
+
+.UserVideo {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    height: 240px;
+    width: 300px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.videoWrapper {
+    display: inline-block;
+    border: 3px solid violet;
+    margin: 3px;
+}
+
+.video-container{
+    padding: 5px;
+    height: 50%;
+    width: 50%;
+}
+.name {
+    text-align: center;
+}
+.container-fluid {
+    padding: 5px;
+}
+.msg{
+    display: inline-block;
+    margin-top: 3px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color:blueviolet;
+    color: white;
+    padding: 5px;
+}

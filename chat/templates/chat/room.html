@@ -1,0 +1,83 @@
+<!-- if you see characters like {{something}} it is django template language
+it makes our work easier for designing dynamic web pages
+you can read more at https://docs.djangoproject.com/en/3.2/ref/templates/language/ -->
+
+<!-- This page is for video chating with others
+It contains html,javascript,css,jquery which displays videos of all the participants,ther messages,submit message
+the javascript,jquery for this page is present in room.js file,which contains the main login about how to build 
+peer-to-peer connection -->
+
+<!-- css is present in room.css as well as inline css -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>Welcome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'chat/css/room.css' %}">
+        <style>
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row" style="padding:5px;">
+                <div class="col-sm-9 col-8">
+                    <h1>Welcome to <span id="meetname">{{meetname}}</span>,<span id="username">{{username}}</span></h1>
+                        <div id="video-container">
+                            <div class="videoWrapper">
+                                <div class="name">{{username}}</div>
+                                <video id="localVideo" class="UserVideo" autoplay></video>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input id="send-msg-input" type="text" placeholder="Enter Something" style="width: 250px; margin-left: 5px;">
+                            <button id="send-msg-btn" type="button" class="btn btn-primary">Send</button>
+                        </div>
+
+
+                    <div style="margin-left: 5px;">
+                            <button class="btn btn-primary" id="toggle-audio" style="margin-bottom: 3px; margin-right: 5px;">Mute</button>
+                            <button class="btn btn-secondary" id="toggle-video">Video Of</button>
+                            <button class="btn btn-danger" id="end-call">End Call</button>
+                    </div>
+                    <div style="display: none;" id="owner">{{owner}}</div>
+                </div>
+
+                <div class="col-sm-3 col-4">
+                    <h1>Messages</h1>
+                    <div id="msg-list">
+                            {% for msg in messages %}
+                                <div class="msg">{{msg}}</div>
+                                <br>
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{% static 'chat/js/room.js' %}"></script>
+        <script>
+            document.getElementById('end-call').addEventListener('click',()=>{
+               window.location.pathname='/';
+            });
+        </script>
+    </body>
+</html>

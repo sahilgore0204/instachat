@@ -1,0 +1,207 @@
+<!-- if you see characters like {{something}} it is django template language
+it makes our work easier for designing dynamic web pages
+you can read more at https://docs.djangoproject.com/en/3.2/ref/templates/language/ -->
+
+
+
+<!-- this web page is for home viewport
+
+it contains html,css,javascript,jquery for creating meeting and displaying created/joined meetings
+
+it also displays the url of meeting created which can be shared to other users -->
+
+
+<!-- javascript,jquery code in present in index.js file -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8"/>
+    <title>Instachat</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'chat/css/index.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    </style>
+</head>
+<body>
+     
+    <h3>Hii {{user.username}}</h3>
+
+
+    <a style="position: relative; right: 0;" href="{% url 'chat:logout' %}">Logout</a>
+
+    <div class="d-flex justify-content-center">
+        <h1>Welcome to <span style="font-family:'Pacifico', cursive ; color: blueviolet;">Instachat</span></h1>
+    </div>
+    <br>
+
+
+    <div class="d-flex justify-content-center">
+        <h3>One platform, many places</h3>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <button id="create-meeting-btn" class="btn btn-primary" style="margin-right: 20px;">Create Meeting</button>
+        <br>
+    </div>
+    <br>
+     
+    {% for message in messages %}
+            <p id="msg" class="d-flex justify-content-center" style="color: red;">{{message}}</p>
+    {% endfor %}
+
+
+    <div id="form-content-1" class="justify-content-center">
+        <form>
+                <label for="meetname"></label>
+                <span>Meet Name should not contain any spaces</span>
+                <input id="meetname" class="form-control" placeholder="Enter Meeting Name" name="meetname" required>
+                <input id="username" type="hidden" name="username" value={{user.username}}>
+                <div class="d-flex justify-content-center">
+                    <input id="create-meet-submit-btn" type="button" value="Create Meeting" class="btn btn-primary">
+                </div>
+        </form>
+    </div>
+
+
+    <div id="form-content-3" class="justify-content-center">
+
+    </div>
+     
+     
+    <div id="meetlist" style="margin-top: 150px;">
+        <span id="listexpand" style="color: blueviolet;">List of meetings you created/joined</span>
+        <div id="list1" style="display: none;">
+            <!-- meetings created by user -->
+        </div>
+        <div id="list2" style="display: none;">
+            <!-- meetings joined by user -->
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    {% csrf_token %}
+
+    <script type="text/javascript" src="{% static 'chat/js/index.js' %}">
+         
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="d-flex justify-content-center">
+        <h3>One platform, many places</h3>
+    </div>
+    <div>
+        <button id="create-meet" class="btn btn-primary">Create a meeting?</button>
+    </div>
+    <div id="meet-info" style="margin-top: 5px;">
+        
+    </div>
+    <div style="height: 100vh;" class="d-flex justify-content-center align-items-center">
+        <form id="form1" method="POST" action="{% url 'chat:room' %}">
+            {% csrf_token %}
+            <input id="room" class="form-control" type="text" name="room_no" placeholder="Enter Meeting code"><br>
+            <input id="name" class="form-control" type="text" name="name" placeholder="Enter Your Name"><br>
+            <div class="d-flex justify-content-center">
+                <input id="submit" type="submit" name="submit" value="Enter Meeting" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    $('#name').on('keyup',function (e){
+     if(e.keyCode === 13){
+         $('#submit').click();
+     }
+    });
+    $(document).ready(function(){
+     $('#room').val('');
+     $('#name').val('');
+    });
+    $('#create-meet').on('click',()=> {
+      var meetInput=document.createElement('input');
+      meetInput.id='meet-name';
+      var info=document.createElement('div');
+      var meetInfo=document.querySelector('#meet-info');
+      meetInfo.innerHTML="";
+      meetInput.placeholder='Enter the name of the meeting';
+      meetInput.className='form-control';
+      info.innerHTML='After entering the name please press enter';
+      meetInfo.appendChild(meetInput);
+      meetInfo.appendChild(info);
+      $('#meet-name').on('keyup',(event)=>{
+      if(event.keyCode === 13){
+          var meetInfo=document.querySelector('#meet-info');
+          console.log('submitting');
+          var meetName=$('#meet-name').val();
+          var meetCode="Meeting code for "+meetName+" is "+"<strong>"+String(Math.floor(Math.random()*100000 + 1000))+"</strong>";
+          var info='Please share this code with the users whom you wish to join';
+          meetInfo.innerHTML="";
+          meetInfo.innerHTML=meetCode+', '+info;
+      }
+    });
+    });
+</script> -->
+</body>
+</html>
